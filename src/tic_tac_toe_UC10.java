@@ -1,6 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
-public class tic_tac_toe_UC9
+public class tic_tac_toe_UC10
 {
     public static Scanner scannerObject = new Scanner(System.in);
     public static final Random randomGenerator = new Random();
@@ -53,7 +53,7 @@ public class tic_tac_toe_UC9
                 showBoard();
                 break;
             } else {
-                System.out.println("Invalid Choice");
+                System.out.println("Invalid Choice. Please Enter position again.");
 
             }
         }
@@ -62,9 +62,20 @@ public class tic_tac_toe_UC9
     public static void computerMove() {
         System.out.println("\nComputer Is Playing");
         do {
-            playLocation = randomGenerator.nextInt(9) + 1;
-            if(predictWinLocationAndBlock()) {
+            int cornerLocation = randomGenerator.nextInt(4) + 1;
+            if (predictWinLocationAndBlock()) {
             }
+            else {
+                if(cornerLocation == 1)
+                    playLocation = 1;
+                if(cornerLocation == 2)
+                    playLocation = 3;
+                if(cornerLocation == 3)
+                    playLocation = 7;
+                if(cornerLocation == 4)
+                    playLocation = 9;
+            }
+
         } while (!isEmpty(playLocation));
         board[playLocation] = computer;
         showBoard();
@@ -284,10 +295,6 @@ public class tic_tac_toe_UC9
         }
     }
 
-    public static void blockOpponent() {
-
-    }
-
     public static boolean checkBoardFull() {
         if ((board[1] != ' ') && (board[2] != ' ') && (board[3] != ' ') && (board[4] != ' ') && (board[5] != ' ')
                 && (board[6] != ' ') && (board[7] != ' ') && (board[8] != ' ') && (board[9] != ' ')) {
@@ -346,7 +353,7 @@ public class tic_tac_toe_UC9
 
     }
 
-    public static void main(String[] darsh) {
+    public static void main(String[] args) {
 
         System.out.println("----- Welcome To The Game Of Tic Tac Toe -----\n");
         createBoard();
@@ -355,4 +362,5 @@ public class tic_tac_toe_UC9
         startGame();
 
     }
+
 }
