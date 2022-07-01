@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class tic_tac_toe_UC2
+public class tic_tac_toe_UC3
 {
     public static char[] gameBoard = new char[10];
     public static char userTurn;
@@ -20,11 +20,20 @@ public class tic_tac_toe_UC2
         return scanner.next().toUpperCase().charAt(0);
     }
 
+    public static void tictactoe() {
+        for (int i = 0; i < gameBoard.length; i++) {
+
+            gameBoard[i] = ' ';
+        }
+    }
+
 
     public static void main(String[] args) {
         System.out.println("*********** Welcome to tic tac toe game *********");
+        tictactoe();
         showBoard();
         user();
+
 
     }
 }
