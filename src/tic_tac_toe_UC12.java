@@ -1,6 +1,6 @@
 import java.util.Random;
 import java.util.Scanner;
-public class tic_tac_toe_UC11 {
+public class tic_tac_toe_UC12 {
     public static Scanner scannerObject = new Scanner(System.in);
     public static final Random randomGenerator = new Random();
     static char[] board = new char[10];
@@ -372,9 +372,10 @@ public class tic_tac_toe_UC11 {
             }
         } while (!checkWinner() && !checkBoardFull());
         if (checkBoardFull() && !checkWinner())
-            System.out.println("Game TIED.");
+            System.out.println("Board is FULL! Game TIED.");
 
     }
+
 
     public static void main(String[] args) {
 
