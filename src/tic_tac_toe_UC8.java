@@ -1,5 +1,5 @@
 import java.util.*;
-public class tic_tac_toe_UC7
+public class tic_tac_toe_UC8
 {
     public static Scanner scannerObject = new Scanner(System.in);
     static char[] board = new char[10];
@@ -40,21 +40,19 @@ public class tic_tac_toe_UC7
         System.out.println("\nPlayer Is Playing");
         System.out.println("\nEnter Location 1-9 to Make Move");
 
-        while (true){
+        playLocation = scannerObject.nextInt();
+        scannerObject.nextLine();
+        if (isEmpty(playLocation) && playLocation < 10 && playLocation > 0) {
 
-            playLocation = scannerObject.nextInt();
-            scannerObject.nextLine();
-            if (isEmpty(playLocation) && playLocation < 10 && playLocation > 0) {
+            board[playLocation] = player;
+            showBoard();
 
-                board[playLocation] = player;
-                showBoard();
-                break;
-            } else {
-                System.out.println("Invalid Choice");
+        } else {
+            System.out.println("Invalid Choice");
 
-            }
         }
     }
+
     public static void computerMove() {
         System.out.println("\nComputer Is Playing");
         do {
@@ -65,10 +63,113 @@ public class tic_tac_toe_UC7
         board[playLocation] = computer;
         showBoard();
     }
+    public static boolean predictWinLocation() {
+        if (board[1] == computer && board[2] == computer && board[3] == ' ') {
+            playLocation = 3;
+            return true;
+        }
+        if (board[1] == computer && board[3] == computer && board[2] == ' ') {
+            playLocation = 2;
+            return true;
+        }
+        if (board[3] == computer && board[2] == computer && board[1] == ' ') {
+            playLocation = 1;
+            return true;
+        }
+        if (board[4] == computer && board[5] == computer && board[6] == ' ') {
+            playLocation = 6;
+            return true;
+        }
+        if (board[4] == computer && board[6] == computer && board[5] == ' ') {
+            playLocation = 5;
+            return true;
+        }
+        if (board[6] == computer && board[5] == computer && board[4] == ' ') {
+            playLocation = 4;
+            return true;
+        }
+        if (board[7] == computer && board[8] == computer && board[9] == ' ') {
+            playLocation = 9;
+            return true;
+        }
+        if (board[7] == computer && board[9] == computer && board[8] == ' ') {
+            playLocation = 8;
+            return true;
+        }
+        if (board[9] == computer && board[8] == computer && board[7] == ' ') {
+            playLocation = 7;
+            return true;
+        }
+        if (board[1] == computer && board[4] == computer && board[7] == ' ') {
+            playLocation = 7;
+            return true;
+        }
+        if (board[1] == computer && board[7] == computer && board[4] == ' ') {
+            playLocation = 4;
+            return true;
+        }
+        if (board[7] == computer && board[4] == computer && board[1] == ' ') {
+            playLocation = 1;
+            return true;
+        }
+        if (board[2] == computer && board[5] == computer && board[8] == ' ') {
+            playLocation = 8;
+            return true;
+        }
+        if (board[2] == computer && board[8] == computer && board[5] == ' ') {
+            playLocation = 5;
+            return true;
+        }
+        if (board[8] == computer && board[5] == computer && board[2] == ' ') {
+            playLocation = 2;
+            return true;
+        }
+        if (board[3] == computer && board[6] == computer && board[9] == ' ') {
+            playLocation = 9;
+            return true;
+        }
+        if (board[3] == computer && board[9] == computer && board[6] == ' ') {
+            playLocation = 6;
+            return true;
+        }
+        if (board[9] == computer && board[6] == computer && board[3] == ' ') {
+            playLocation = 3;
+            return true;
+        }
+        if (board[1] == computer && board[5] == computer && board[9] == ' ') {
+            playLocation = 9;
+            return true;
+        }
+        if (board[1] == computer && board[9] == computer && board[5] == ' ') {
+            playLocation = 5;
+            return true;
+        }
+        if (board[9] == computer && board[5] == computer && board[1] == ' ') {
+            playLocation = 1;
+            return true;
+        }
+        if (board[3] == computer && board[5] == computer && board[7] == ' ') {
+            playLocation = 7;
+            return true;
+        }
+        if (board[3] == computer && board[7] == computer && board[5] == ' ') {
+            playLocation = 5;
+            return true;
+        }
+        if (board[7] == computer && board[5] == computer && board[3] == ' ') {
+            playLocation = 3;
+            return true;
+        } else
+            return false;
+    }
+
     public static boolean isEmpty(int location) {
         return board[location] == ' ';
+
     }
+
     public static void checkToss() {
+
         double tossResult = Math.floor(Math.random() * 10) % 2;
         System.out.println("\nChoose 1 for Heads or 2 for Tails");
         int coinSelect = scannerObject.nextInt();
@@ -80,13 +181,16 @@ public class tic_tac_toe_UC7
             System.out.println("\nComputer Won The Toss! Computer Starts");
         }
     }
+
     public static boolean checkBoardFull() {
         if ((board[1] != ' ') && (board[2] != ' ') && (board[3] != ' ') && (board[4] != ' ') && (board[5] != ' ')
                 && (board[6] != ' ') && (board[7] != ' ') && (board[8] != ' ') && (board[9] != ' ')) {
+
             return true;
         }
         return false;
     }
+
     public static boolean checkWinner() {
         if (isWinner)
             return true;
@@ -102,6 +206,7 @@ public class tic_tac_toe_UC7
             isWinner = true;
             return true;
         }
+
         if ((board[1] == computer && board[2] == computer && board[3] == computer)
                 || (board[4] == computer && board[5] == computer && board[6] == computer)
                 || (board[7] == computer && board[8] == computer && board[9] == computer)
@@ -114,8 +219,10 @@ public class tic_tac_toe_UC7
             isWinner = true;
             return true;
         }
+
         return false;
     }
+
     public static void startGame() {
         do {
             if (playerWinToss) {
@@ -130,13 +237,16 @@ public class tic_tac_toe_UC7
         } while (!checkWinner() && !checkBoardFull());
         if (checkBoardFull() && !checkWinner())
             System.out.println("Game TIED.");
+
     }
-    public static void main(String[] args)
-    {
-        System.out.println("----- Welcome To The Game Of Tic Tac Toe -----");
+
+    public static void main(String[] args) {
+
+        System.out.println("----- Welcome To The Game Of Tic Tac Toe -----\n");
         createBoard();
         getPlayerChoice();
         checkToss();
         startGame();
+
     }
 }
